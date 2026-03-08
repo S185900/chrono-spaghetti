@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+/* --- 宇宙の背景画像の設定 --- */
+body {
+    background-image:
+        linear-gradient(to right,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 35%,
+            rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 1) 100%),
+        url('../images/ivana-cajina-asuyh-_ZX54-unsplash.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #000000;
+    background-repeat: no-repeat;
+}
+
+/* 全体のコンテナを中央寄せ */
+.auth-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+    padding-top: 10px;
+}
+
+.main-logo {
+    width: 600px;
+}
+
+.tagline {
+    font-family: "Baloo Chettan 2", cursive;
+    font-weight: 500;
+    color: #E4A56F;
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6),
+        0 0 12px rgba(255, 140, 0, 0.4);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    margin: -100px 0 70px;
+    text-align: center;
+    z-index: 30;
+    margin-left: 50px;
+}
+
+.auth-form-wrapper {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    position: relative;
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divider-line {
+    width: 1px;
+    height: 150px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.6),
+        0 0 20px rgba(250, 212, 167, 0.4),
+        0 0 35px rgba(250, 212, 167, 0.2);
+}
+
+.divider-text {
+    margin-bottom: 10px;
+}
+
+/* 入力フォームのスタイル */
+.auth-input {
+    display: block;
+    width: 300px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 4px;
+}
+
+/* ソーシャルログインボタン */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-btn {
+    color: #ffffff;
+    background-color: #150029;
+    width: 300px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: 0.4s ease;
+    outline: none;
+}
+
+/* カーソルを合わせた時の発光エフェクト */
+.social-btn:hover {
+    background-color: #2a0052;
+    border: 1px solid rgba(180, 100, 255, 0.5);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4),
+        0 0 30px rgba(138, 43, 226, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* フォーム全体のコンテナ */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 各入力アイテムのラップ */
+.login-item {
+    width: 100%;
+    max-width: 300px;
+}
+
+.login-label {
+    display: none;
+}
+
+/* 入力フォーム本体 */
+.input-form {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 4px;
+    color: #150029;
+    font-size: 18px;
+    outline: none;
+    margin-top: 10px;
+}
+
+/* プレースホルダーの文字色調整 */
+.input-form::placeholder {
+    color: #888;
+    text-align: left;
+}
+
+.orange-button {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin: 0 50px;
+}
+
+/* 登録ボタン（オレンジの枠線） */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background: transparent;
+    border: 2px solid #ff8c00;
+    color: #ff8c00;
+    border-radius: 30px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.4),
+        0 0 20px rgba(255, 140, 0, 0.2);
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+}
+
+.submit-btn:hover {
+    background: rgba(255, 140, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
+        0 0 40px rgba(255, 140, 0, 0.3);
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.submit-nav {
+    color: #ff8c00;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    text-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
+}
+
+.submit-nav:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    padding-bottom: 2px;
+}
+
+/* --- レスポンシブ対応 --- */
+
+/* PCサイズ（1400〜1540px） */
+@media screen and (min-width: 1400px) and (max-width: 1540px) {
+    .main-logo {
+        width: 800px;
+    }
+
+    .tagline {
+        font-size: 25px;
+        margin: -130px 0 70px;
+        margin-left: 30px;
+    }
+}
+
+/* タブレットサイズ（768〜850px） */
+@media screen and (min-width: 768px) and (max-width: 850px) {
+    .main-logo {
+        width: 400px;
+    }
+
+    .tagline {
+        font-size: 13px;
+        margin: -70px 0 70px;
+        margin-left: 30px;
+    }
+
+    .auth-form-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .register-form {
+        order: 1;
+        width: 100%;
+    }
+
+    .divider {
+        order: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
+    }
+
+    .social-login {
+        order: 3;
+    }
+
+    .divider-line {
+        flex: 1;
+        height: 1px;
+        width: auto;
+        margin-bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+
+    .divider-text {
+        margin-bottom: 0;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+        white-space: nowrap;
+    }
+}
