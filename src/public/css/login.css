@@ -55,6 +55,7 @@ body {
 
 .auth-form-wrapper {
     display: flex;
+    margin: -50px 0 70px;
     gap: 60px;
     align-items: flex-start;
     position: relative;
@@ -137,6 +138,11 @@ body {
 .login-item {
     width: 100%;
     max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .login-label {
@@ -212,6 +218,38 @@ body {
         0 0 15px rgba(255, 255, 255, 0.4);
     border-bottom: 1px solid rgba(255, 255, 255, 0.8);
     padding-bottom: 2px;
+}
+
+.form-error-message {
+    color: #ff8c00;
+    font-size: 14px;
+    font-weight: 700;
+    display: block;
+    text-align: left;
+    padding-top: 8px;
+    line-height: 1.4;
+    width: 100%;
+    text-shadow:
+        0 0 5px rgba(255, 140, 0, 0.9),
+        0 0 12px rgba(255, 140, 0, 0.6),
+        0 0 25px rgba(255, 80, 0, 0.3);
+    0 0 30px rgba(255, 255, 255, 0.2);
+    filter: brightness(1.2);
+    animation: neon-pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes neon-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: brightness(1.2);
+    }
+
+    50% {
+        opacity: 0.85;
+        filter: brightness(1.6);
+    }
 }
 
 /* --- レスポンシブ対応 --- */

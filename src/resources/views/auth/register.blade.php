@@ -10,11 +10,6 @@
 @section('content')
 <div class="auth-page-wrapper">
 
-    <div class="main-logo-visual">
-        <img class="main-logo" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
-        <p class="tagline">Logging every vision from the Event Horizon.</p>
-    </div>
-
     <div class="auth-form-wrapper">
 
         {{-- ソーシャルログイン --}}
@@ -32,12 +27,12 @@
         </div>
 
         {{-- 登録フォーム --}}
-        <div class="register-form" method="" action="/">
+        <form class="register-form" method="POST" action="{{ route('register') }}" novalidate>
             @csrf
 
             <div class="login-item">
-                <label for="name" class="login-label">アカウント名</label>
-                <input id="name" type="email" class="input-form" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="アカウント名">
+                <label for="name" class="login-label">ユーザー名</label>
+                <input id="name" type="text" class="input-form" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="ユーザー名">
 
                 @error('name')
                     <span class="form-error-message">{{ $message }}</span>
@@ -60,21 +55,15 @@
                 @error('password')
                     <span class="form-error-message">{{ $message }}</span>
                 @enderror
-                @error('auth_error')
-                    <span class="auth-error-message">{{ $message }}</span>
-                @enderror
             </div>
 
             <div class="login-item">
                 <label for="password_confirmation" class="login-label">確認用パスワード</label>
                 <input id="password_confirmation" type="password" class="input-form" name="password_confirmation" required autocomplete="password_confirmation" placeholder="確認用パスワード">
 
-                @error('password')
-                    <span class="form-error-message">{{ $message }}</span>
-                @enderror
-                @error('auth_error')
-                    <span class="auth-error-message">{{ $message }}</span>
-                @enderror
+                @if($errors->has('password_confirmation'))
+                    <span class="form-error-message">{{ $errors->first('password_confirmation') }}</span>
+                @endif
             </div>
 
             <div class="orange-button mt-8">
@@ -95,7 +84,7 @@
                 </button>
             </div>
 
-        <!-- </form> -->
+        </form>
     </div>
 </div>
 @endsection

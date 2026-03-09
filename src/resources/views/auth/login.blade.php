@@ -10,13 +10,7 @@
 @section('content')
 <div class="auth-page-wrapper">
 
-    <div class="main-logo-visual">
-        <img class="main-logo" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
-        <p class="tagline">Logging every vision from the Event Horizon.</p>
-    </div>
-
     <div class="auth-form-wrapper">
-        
         {{-- ソーシャルログイン --}}
         <div class="social-login">
             <button class="social-btn google">Googleでログイン</button>
@@ -31,8 +25,8 @@
             <div class="divider-line"></div>
         </div>
 
-        {{-- 登録フォーム --}}
-        <div class="register-form" method="" action="/">
+        {{-- ログインフォーム --}}
+        <form class="register-form" method="POST" action="{{ route('login') }}" novalidate>
             @csrf
 
             <div class="login-item">
@@ -50,9 +44,6 @@
 
                 @error('password')
                     <span class="form-error-message">{{ $message }}</span>
-                @enderror
-                @error('auth_error')
-                    <span class="auth-error-message">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -77,8 +68,7 @@
             <div class="orange-nav">
                 <a href="/" class="submit-nav">パスワードをお忘れですか？</a>
             </div>
-
-        <!-- </form> -->
+        </form>
     </div>
 </div>
 @endsection

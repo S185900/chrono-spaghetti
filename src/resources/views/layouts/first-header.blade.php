@@ -19,6 +19,17 @@
     {{-- ログイン前共通ヘッダー --}}
     <body>
         <header class="header">
+            <div class="auth-page-wrapper">
+
+            <div class="main-logo-visual">
+                <img class="main-logo" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
+                <p class="tagline">Logging every vision from the Event Horizon.</p>
+            </div>
+
+            <div class="auth-form-wrapper">
+            </div>
+
+        </div>
 
         </header>
         <main class="main-content">

@@ -15,14 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 
 // 認証系
-Route::view('/login', 'auth.login')->name('login');
-Route::view('/register', 'auth.register')->name('register');
+Route::get('/log/index', function () {
+    return view('log.log-index');
+})->middleware(['auth', 'verified'])->name('log.index');
+
 Route::view('/email-verification', 'auth.email-verification')->name('verification.notice');
 
 // レイアウト確認用（開発が終わったら消してもOK）
 Route::view('/first-header', 'layouts.first-header')->name('first-header');
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
