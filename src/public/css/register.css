@@ -102,30 +102,6 @@ body {
     align-items: center;
 }
 
-.social-btn {
-    color: #ffffff;
-    background-color: #150029;
-    width: 300px;
-    padding: 15px;
-    margin-top: 10px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-        transition: 0.4s ease;
-        outline: none;
-}
-
-/* カーソルを合わせた時の発光エフェクト */
-.social-btn:hover {
-    background-color: #2a0052;
-    border: 1px solid rgba(180, 100, 255, 0.5);
-    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4),
-        0 0 30px rgba(138, 43, 226, 0.2);
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
-}
-
 /* フォーム全体のコンテナ */
 .register-form {
     display: flex;
@@ -137,7 +113,7 @@ body {
 /* 各入力アイテムのラップ */
 .login-item {
     width: 100%;
-    max-width: 300px;
+    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -172,50 +148,6 @@ body {
     justify-content: center;
     width: 200px;
     margin: 0 50px;
-}
-
-/* 登録ボタン（オレンジの枠線） */
-.submit-btn {
-    width: 100%;
-    padding: 15px;
-    margin-top: 30px;
-    background: transparent;
-    border: 2px solid #ff8c00;
-    color: #ff8c00;
-    border-radius: 30px;
-    font-weight: 400;
-    font-size: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.4),
-        0 0 20px rgba(255, 140, 0, 0.2);
-    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
-}
-
-.submit-btn:hover {
-    background: rgba(255, 140, 0, 0.2);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
-        0 0 40px rgba(255, 140, 0, 0.3);
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
-}
-
-.form-error-message {
-    color: #ff8c00;
-    font-size: 14px;
-    font-weight: 700;
-    display: block;
-    text-align: left;
-    padding-top: 8px;
-    line-height: 1.4;
-    width: 100%;
-    text-shadow:
-        0 0 5px rgba(255, 140, 0, 0.9),
-        0 0 12px rgba(255, 140, 0, 0.6),
-        0 0 25px rgba(255, 80, 0, 0.3);
-        0 0 30px rgba(255, 255, 255, 0.2);
-    filter: brightness(1.2);
-    animation: neon-pulse 2.5s infinite ease-in-out;
 }
 
 @keyframes neon-pulse {

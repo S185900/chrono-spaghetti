@@ -1,8 +1,11 @@
 @extends('layouts.first-header')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/login.css')}}">
-    <link rel="stylesheet" href="{{ asset('css/first-header.css')}}">
+{{-- 先に古いファイルを読み込む --}}
+    <link rel="stylesheet" href="{{ asset('css/first-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+
+    {{-- 最後にTailwindを読み込んで、古いスタイルを上書きできるようにする --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 
@@ -13,9 +16,9 @@
     <div class="auth-form-wrapper">
         {{-- ソーシャルログイン --}}
         <div class="social-login">
-            <button class="social-btn google">Googleでログイン</button>
-            <button class="social-btn apple">Apple IDでログイン</button>
-            <button class="social-btn microsoft">Microsoftアカウントでログイン</button>
+            <x-social-button class="google !text-lg">Googleでログイン</x-social-button>
+            <x-social-button class="apple !text-lg">Apple IDでログイン</x-social-button>
+            <x-social-button class="microsoft !text-lg">Microsoftアカウントでログイン</x-social-button>
         </div>
 
         {{-- 区切り線 --}}
@@ -34,7 +37,7 @@
                 <input id="email" type="email" class="input-form" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="メールアドレス">
 
                 @error('email')
-                    <span class="form-error-message">{{ $message }}</span>
+                    <x-form-error-message :message="$message" class="!text-[14px]" />
                 @enderror
             </div>
 
@@ -43,30 +46,19 @@
                 <input id="password" type="password" class="input-form" name="password" required autocomplete="password" placeholder="パスワード">
 
                 @error('password')
-                    <span class="form-error-message">{{ $message }}</span>
+                    <x-form-error-message :message="$message" class="!text-[14px]" />
                 @enderror
             </div>
 
-            <div class="orange-button mt-8">
-                <button type="submit" 
-                        class="submit-btn 
-                            relative overflow-hidden group
-                            transform transition-all duration-500 ease-out
-                            hover:-translate-y-2 hover:scale-105 
-                            hover:shadow-[0_0_35px_rgba(255,140,0,0.7)] 
-                            active:scale-95 active:duration-75">
+            <x-submit-button class="mt-8 !text-3xl tracking-widest uppercase">
+                login
+            </x-submit-button>
 
-                    <span class="relative z-10">login</span>
-
-                    <div class="absolute inset-0 w-full h-full 
-                                bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                                -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]">
-                    </div>
-                </button>
-            </div>
-
-            <div class="orange-nav">
-                <a href="/" class="submit-nav">パスワードをお忘れですか？</a>
+            <div class="orange-nav mt-4 text-center">
+                {{-- !text-sm (0.875rem相当) や !text-base (1rem相当) などで調整 --}}
+                <x-orange-link href="/" class="!text-sm">
+                    パスワードをお忘れですか？
+                </x-orange-link>
             </div>
         </form>
     </div>

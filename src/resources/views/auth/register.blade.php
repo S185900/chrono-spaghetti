@@ -14,9 +14,9 @@
 
         {{-- ソーシャルログイン --}}
         <div class="social-login">
-            <button class="social-btn google">Googleでログイン</button>
-            <button class="social-btn apple">Apple IDでログイン</button>
-            <button class="social-btn microsoft">Microsoftアカウントでログイン</button>
+            <x-social-button class="google !text-lg">Googleでログイン</x-social-button>
+            <x-social-button class="apple !text-lg">Apple IDでログイン</x-social-button>
+            <x-social-button class="microsoft !text-lg">Microsoftアカウントでログイン</x-social-button>
         </div>
 
         {{-- 区切り線 --}}
@@ -35,7 +35,7 @@
                 <input id="name" type="text" class="input-form" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="ユーザー名">
 
                 @error('name')
-                    <span class="form-error-message">{{ $message }}</span>
+                    <x-form-error-message :message="$message" class="!text-[14px]" />
                 @enderror
             </div>
 
@@ -44,7 +44,7 @@
                 <input id="email" type="email" class="input-form" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="メールアドレス">
 
                 @error('email')
-                    <span class="form-error-message">{{ $message }}</span>
+                    <x-form-error-message :message="$message" class="!text-[14px]" />
                 @enderror
             </div>
 
@@ -53,7 +53,7 @@
                 <input id="password" type="password" class="input-form" name="password" required autocomplete="password" placeholder="パスワード">
 
                 @error('password')
-                    <span class="form-error-message">{{ $message }}</span>
+                    <x-form-error-message :message="$message" class="!text-[14px]" />
                 @enderror
             </div>
 
@@ -62,27 +62,16 @@
                 <input id="password_confirmation" type="password" class="input-form" name="password_confirmation" required autocomplete="password_confirmation" placeholder="確認用パスワード">
 
                 @if($errors->has('password_confirmation'))
-                    <span class="form-error-message">{{ $errors->first('password_confirmation') }}</span>
+                    <x-form-error-message
+                        :message="$errors->first('password_confirmation')"
+                        class="!text-sm"
+                    />
                 @endif
             </div>
 
-            <div class="orange-button mt-8">
-                <button type="submit" 
-                        class="submit-btn 
-                            relative overflow-hidden group
-                            transform transition-all duration-500 ease-out
-                            hover:-translate-y-2 hover:scale-105 
-                            hover:shadow-[0_0_35px_rgba(255,140,0,0.7)] 
-                            active:scale-95 active:duration-75">
-
-                    <span class="relative z-10 tracking-[0.1em]">登録する</span>
-
-                    <div class="absolute inset-0 w-full h-full 
-                                bg-gradient-to-r from-transparent via-white/30 to-transparent 
-                                -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]">
-                    </div>
-                </button>
-            </div>
+            <x-submit-button class="mt-8 !text-2xl tracking-widest uppercase">
+                登録する
+            </x-submit-button>
 
         </form>
     </div>

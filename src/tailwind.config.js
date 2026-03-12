@@ -1,8 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./resources/views/**/*.blade.php",
-    "./resources/js/**/*.js",
+    "./resources/**/*.blade.php", // これがないとコンポーネントの中身を見に行きません！
+    "./resources/**/*.js",
+    "./resources/**/*.vue",
   ],
   theme: {
     extend: {},
