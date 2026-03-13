@@ -19,22 +19,61 @@
     {{-- ログイン前共通ヘッダー --}}
     <body>
         <header class="header">
-            <div class="auth-page-wrapper">
+            <div class="header-container">
 
             <div class="main-logo-visual">
                 <img class="main-logo" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
-                <p class="tagline">Logging every vision from the Event Horizon.</p>
+            </div>
+
+            {{-- 中：観測コンソール（検索・通知・フィルタ） --}}
+            <div class="header-nav-center">
+                {{-- 通知・マイページアイコン --}}
+                <a href="/" class="notification-wrapper">
+                    <div class="user-avatar">
+                        {{-- 本来はここに $user->image_url などが入る想定 --}}
+                        {{-- <img src="/" alt="マイページ"> --}}
+                    </div>
+                    <span class="notification-badge">2</span>
+                </a>
+
+                {{-- 検索ボックス --}}
+                <div class="search-console-wrapper">
+                    <form action="#" method="GET" class="search-form">
+                        {{-- 検索アイコン（虫眼鏡） --}}
+                        <label for="search-input" class="search-icon-label">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </label>
+
+                        {{-- 入力フィールド --}}
+                        <input type="text" id="search-input" name="query" class="search-input" placeholder="検索" autocomplete="off">
+
+                        {{-- デザイン用の下線 --}}
+                        <div class="search-underline"></div>
+                    </form>
+                </div>
+
+                {{-- ボタン類 --}}
+                <div class="flex gap-4">
+                    <x-submit-button class="!w-44 !h-[60px] !flex !items-center !justify-center !text-xl !p-0 !mt-[-25px] !rounded-full !tracking-[0.5rem]" onclick="location.href='#'">
+                        新着
+                    </x-submit-button>
+
+                    <x-submit-button class="!w-44 !h-[60px] !flex !items-center !justify-center !text-xl !p-0 !mt-[-25px] !rounded-full" onclick="location.href='#'">
+                        カテゴリー
+                    </x-submit-button>
+                </div>
             </div>
 
             {{-- ログアウトボタンの追加 --}}
             <div class="header-actions">
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}" class="flex items-center m-0">
                     @csrf
-                    <button type="submit" class="logout-button">LOGOUT</button>
+                    <x-submit-button class="!w-44 !h-[60px] !flex !items-center !justify-center !text-2xl !p-0 !mt-[-25px] !leading-none uppercase !rounded-full">
+                        logout
+                    </x-submit-button>
                 </form>
-            </div>
-
-            <div class="auth-form-wrapper">
             </div>
 
         </div>

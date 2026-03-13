@@ -4,8 +4,6 @@
 {{-- 先に古いファイルを読み込む --}}
     <link rel="stylesheet" href="{{ asset('css/first-header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-
-    {{-- 最後にTailwindを読み込んで、古いスタイルを上書きできるようにする --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 

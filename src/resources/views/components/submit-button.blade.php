@@ -15,7 +15,7 @@
     }
 
     .chrono-submit-btn {
-        width: 200px;
+        width: 80%;
         padding: 10px 0;
         background-color: transparent;
         border: 2px solid #ff8c00;

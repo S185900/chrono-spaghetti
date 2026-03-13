@@ -251,8 +251,38 @@
       max-width: 96rem;
     }
   }
+  .m-0 {
+    margin: calc(var(--spacing) * 0);
+  }
   .mx-auto {
     margin-inline: auto;
+  }
+  .\!mt-0 {
+    margin-top: calc(var(--spacing) * 0) !important;
+  }
+  .\!mt-\[-1px\] {
+    margin-top: -1px !important;
+  }
+  .\!mt-\[-1８px\] {
+    margin-top: -1８px !important;
+  }
+  .\!mt-\[-2px\] {
+    margin-top: -2px !important;
+  }
+  .\!mt-\[-4px\] {
+    margin-top: -4px !important;
+  }
+  .\!mt-\[-12px\] {
+    margin-top: -12px !important;
+  }
+  .\!mt-\[-18px\] {
+    margin-top: -18px !important;
+  }
+  .\!mt-\[-23px\] {
+    margin-top: -23px !important;
+  }
+  .\!mt-\[-25px\] {
+    margin-top: -25px !important;
   }
   .-mt-px {
     margin-top: -1px;
@@ -265,6 +295,9 @@
   }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
+  }
+  .mt-12 {
+    margin-top: calc(var(--spacing) * 12);
   }
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
@@ -280,6 +313,9 @@
   }
   .ml-12 {
     margin-left: calc(var(--spacing) * 12);
+  }
+  .\!flex {
+    display: flex !important;
   }
   .block {
     display: block;
@@ -302,6 +338,18 @@
   .table {
     display: table;
   }
+  .\!h-16 {
+    height: calc(var(--spacing) * 16) !important;
+  }
+  .\!h-\[0px\] {
+    height: 0px !important;
+  }
+  .\!h-\[50px\] {
+    height: 50px !important;
+  }
+  .\!h-\[60px\] {
+    height: 60px !important;
+  }
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
@@ -316,6 +364,12 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .\!w-44 {
+    width: calc(var(--spacing) * 44) !important;
+  }
+  .\!w-auto {
+    width: auto !important;
   }
   .w-5 {
     width: calc(var(--spacing) * 5);
@@ -345,11 +399,20 @@
   .grid-cols-1 {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
+  .\!items-center {
+    align-items: center !important;
+  }
   .items-center {
     align-items: center;
   }
+  .\!justify-center {
+    justify-content: center !important;
+  }
   .justify-center {
     justify-content: center;
+  }
+  .gap-4 {
+    gap: calc(var(--spacing) * 4);
   }
   .truncate {
     overflow: hidden;
@@ -358,6 +421,9 @@
   }
   .overflow-hidden {
     overflow: hidden;
+  }
+  .\!rounded-full {
+    border-radius: calc(infinity * 1px) !important;
   }
   .rounded {
     border-radius: 0.25rem;
@@ -399,11 +465,26 @@
     --tw-gradient-to: transparent;
     --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
   }
+  .\!p-0 {
+    padding: calc(var(--spacing) * 0) !important;
+  }
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
+  .\!px-6 {
+    padding-inline: calc(var(--spacing) * 6) !important;
+  }
+  .\!px-8 {
+    padding-inline: calc(var(--spacing) * 8) !important;
+  }
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
+  }
+  .\!py-2 {
+    padding-block: calc(var(--spacing) * 2) !important;
+  }
+  .\!py-3 {
+    padding-block: calc(var(--spacing) * 3) !important;
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
@@ -434,6 +515,10 @@
     font-size: var(--text-sm) !important;
     line-height: var(--tw-leading, var(--text-sm--line-height)) !important;
   }
+  .\!text-xl {
+    font-size: var(--text-xl) !important;
+    line-height: var(--tw-leading, var(--text-xl--line-height)) !important;
+  }
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
@@ -445,6 +530,10 @@
   .\!text-\[14px\] {
     font-size: 14px !important;
   }
+  .\!leading-none {
+    --tw-leading: 1 !important;
+    line-height: 1 !important;
+  }
   .leading-7 {
     --tw-leading: calc(var(--spacing) * 7);
     line-height: calc(var(--spacing) * 7);
@@ -452,6 +541,10 @@
   .font-semibold {
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
+  }
+  .\!tracking-\[0\.5rem\] {
+    --tw-tracking: 0.5rem !important;
+    letter-spacing: 0.5rem !important;
   }
   .tracking-widest {
     --tw-tracking: var(--tracking-widest);

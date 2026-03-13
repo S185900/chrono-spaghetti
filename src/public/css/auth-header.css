@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* --- 宇宙の背景画像の設定 --- */
+body {
+    background-image:
+        linear-gradient(to right,
+            rgba(0, 0, 0, 1) 0%,
+            rgba(0, 0, 0, 0) 35%,
+            rgba(0, 0, 0, 0) 65%,
+            rgba(0, 0, 0, 1) 100%),
+        url('../images/ivana-cajina-asuyh-_ZX54-unsplash.jpg');
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #000000;
+    background-repeat: no-repeat;
+}
+
+.header {
+    width: 100%;
+    padding: 10px 0;
+}
+
+/* ここが横並びの肝（きも）です */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ロゴ周辺のレイアウトを微調整 */
+.main-logo-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.main-logo {
+    width: 250px;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* 追加：フォーム自体も Flexbox にして垂直中央を強制する */
+.header-actions form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.header-nav-center {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-grow: 1;
+    /* 余ったスペースをこのブロックが引き受ける */
+    justify-content: flex-end;
+    /* 中身を右（ログアウトボタン側）に寄せる */
+    margin-right: 16px;
+    /* ログアウトボタンとの最終的な距離をここで調整 */
+}
+
+/* 通知・マイページアイコンの親コンテナ */
+.notification-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    /* ロゴの大きさに合わせて調整 */
+    height: 50px;
+    transition: transform 0.2s;
+}
+
+.notification-wrapper:hover {
+    transform: scale(1.05);
+    /* ホバー時に少し大きくしてクリック感を出す */
+}
+
+/* ユーザーアイコン画像を表示する円形エリア */
+.user-avatar {
+    width: 100%;
+    height: 100%;
+    background-color: #d1d5db;
+    /* 画像がない時のグレー */
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    /* 控えめな縁取り */
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+}
+
+/* 通知バッジ（赤い丸） */
+.notification-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: #ff0000;
+    /* 鮮やかな赤 */
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
+    /* 赤く発光させてSF感を強調 */
+    z-index: 10;
+}
+
+/* 検索フォーム全体のコンテナ */
+.search-console-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 5px;
+    /* 下線との隙間 */
+}
+
+/* 検索アイコン */
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    margin-right: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* 入力欄本体 */
+.search-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    /* 前回の調整で少し大きくしました */
+    outline: none;
+    width: 140px;
+    /* 通常時の幅（ここはお好みで） */
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    /* 動きを滑らかに */
+}
+
+/* クリックして入力状態になった時の幅 */
+.search-input:focus {
+    width: 300px;
+    /* ここを 300px ~ 400px くらいに広げる */
+}
+
+/* プレースホルダーの色 */
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* 検索窓の下線 */
+.search-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #ffffff;
+    /* 添付画像通りの白 */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* 入力中に下線をオレンジに発光させる */
+.search-input:focus~.search-underline {
+    background: #ff8c00;
+    box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
+    height: 2px;
+}
+
+.footer {
+    font-family: "Baloo Chettan 2", cursive;
+    font-weight: 400;
+    font-size: 13px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 0.3rem;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

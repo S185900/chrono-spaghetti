@@ -35,8 +35,22 @@ body {
     padding-top: 10px;
 }
 
+.tagline {
+    font-family: "Baloo Chettan 2", cursive;
+    font-weight: 500;
+    color: #E4A56F;
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6),
+        0 0 12px rgba(255, 140, 0, 0.4);
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    margin: -100px 0 70px;
+    text-align: center;
+    z-index: 30;
+    margin-left: 50px;
+}
+
 .main-logo {
-    width: 400px;
+    width: 600px;
 }
 
 .email-verification-text {
@@ -49,55 +63,12 @@ body {
     justify-content: center;
     width: 400px;
     margin: 0 50px;
-}
-
-/* 登録ボタン（オレンジの枠線） */
-.submit-btn {
-    width: 100%;
-    padding: 20px 40px;
-    margin-top: 50px;
-    background: transparent;
-    border: 2px solid #ff8c00;
-    color: #ff8c00;
-    border-radius: 70px;
-    font-weight: 400;
-    font-size: 25px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 0 10px rgba(255, 140, 0, 0.4),
-        0 0 20px rgba(255, 140, 0, 0.2);
-    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
-}
-
-.submit-btn:hover {
-    background: rgba(255, 140, 0, 0.2);
-    box-shadow: 0 0 20px rgba(255, 140, 0, 0.6),
-        0 0 40px rgba(255, 140, 0, 0.3);
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
 }
 
 .orange-nav {
-    margin-top: 50px;
+    margin-top: 40px;
     letter-spacing: 0.2rem;
-}
-
-.submit-nav {
-    color: #ff8c00;
-    text-decoration: none;
-    font-size: 18px;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    position: relative;
-    text-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
-}
-
-.submit-nav:hover {
-    color: #ffffff;
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
-        0 0 15px rgba(255, 255, 255, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-    padding-bottom: 2px;
 }
 
 /* --- レスポンシブ対応 --- */
