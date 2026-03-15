@@ -17,11 +17,18 @@ body {
     background-repeat: no-repeat;
 }
 
+.main-logo {
+    min-width: 200px;
+    max-width: 100%;
+    height: auto;
+    /* アスペクト比を維持 */
+}
+
 .main-content {
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 16px;
 }
 
 .header {
@@ -30,23 +37,19 @@ body {
 }
 
 .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 16px;
+    /* スマホでは 16px (px-4相当) にする */
 }
 
 .main-logo-visual {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-}
-
-.main-logo {
-    width: 250px;
+    max-width: 100%;
+    /* 親を超えないように強制 */
 }
 
 .header-actions {
@@ -61,19 +64,12 @@ body {
 }
 
 .header-nav-center {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    flex-grow: 1;
-    justify-content: flex-end;
-    margin-right: 16px;
+
 }
 
 .notification-wrapper {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 50px;
     transition: transform 0.2s;
 }
 
@@ -116,11 +112,9 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    margin-left: 10px;
 }
 
 .search-form {
-    display: flex;
     align-items: center;
     position: relative;
     padding-bottom: 5px;
@@ -142,7 +136,7 @@ body {
     color: #ffffff;
     font-size: 18px;
     outline: none;
-    width: 140px;
+    width: auto;
     transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -184,4 +178,17 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+@media (min-width: 1024px) {
+    .header-container {
+        padding: 0 40px;
+        /* PCサイズになったら 40px に戻す */
+    }
+}
+
+@media (min-width: 1024px) {
+    .main-content {
+        padding: 0 40px;
+    }
 }

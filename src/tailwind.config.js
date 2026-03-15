@@ -6,7 +6,12 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // 'baloo' というクラス名で呼び出せるように設定
+        'baloo': ['"Baloo Chettan 2"', 'Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
