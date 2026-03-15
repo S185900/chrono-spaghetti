@@ -1,11 +1,8 @@
 .log-index-wrapper {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 20px 100px;
-    /* 下にフッター分の余白 */
+    width: 100%;
 }
 
-/* タイムラインナビゲーション */
 .timeline-nav {
     display: flex;
     align-items: flex-end;
@@ -45,11 +42,8 @@
     border-color: #ff8c00;
 }
 
-/* グリッドレイアウト（4列） */
 .log-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
 }
 
 /* ログカード（ポスター） */

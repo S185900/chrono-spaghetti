@@ -25,7 +25,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* 全体のコンテナを中央寄せ */
 .auth-page-wrapper {
     display: flex;
     flex-direction: column;
@@ -84,7 +83,6 @@ body {
     margin-bottom: 10px;
 }
 
-/* 入力フォームのスタイル */
 .auth-input {
     display: block;
     width: 500px;
@@ -95,14 +93,12 @@ body {
     border-radius: 4px;
 }
 
-/* ソーシャルログインボタン */
 .social-login {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* フォーム全体のコンテナ */
 .register-form {
     display: flex;
     flex-direction: column;
@@ -110,7 +106,6 @@ body {
     gap: 15px;
 }
 
-/* 各入力アイテムのラップ */
 .login-item {
     width: 100%;
     width: 300px;
@@ -125,7 +120,6 @@ body {
     display: none;
 }
 
-/* 入力フォーム本体 */
 .input-form {
     width: 100%;
     padding: 15px 20px;
@@ -138,7 +132,6 @@ body {
     margin-top: 10px;
 }
 
-/* プレースホルダーの文字色調整 */
 .input-form::placeholder {
     color: #888;
     text-align: left;

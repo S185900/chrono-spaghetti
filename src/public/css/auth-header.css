@@ -17,12 +17,18 @@ body {
     background-repeat: no-repeat;
 }
 
+.main-content {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
 .header {
     width: 100%;
     padding: 10px 0;
 }
 
-/* ここが横並びの肝（きも）です */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -33,7 +39,6 @@ body {
     padding: 0 40px;
 }
 
-/* ロゴ周辺のレイアウトを微調整 */
 .main-logo-visual {
     display: flex;
     flex-direction: column;
@@ -49,7 +54,6 @@ body {
     align-items: center;
 }
 
-/* 追加：フォーム自体も Flexbox にして垂直中央を強制する */
 .header-actions form {
     display: flex;
     align-items: center;
@@ -61,43 +65,33 @@ body {
     align-items: center;
     gap: 30px;
     flex-grow: 1;
-    /* 余ったスペースをこのブロックが引き受ける */
     justify-content: flex-end;
-    /* 中身を右（ログアウトボタン側）に寄せる */
     margin-right: 16px;
-    /* ログアウトボタンとの最終的な距離をここで調整 */
 }
 
-/* 通知・マイページアイコンの親コンテナ */
 .notification-wrapper {
     position: relative;
     display: inline-block;
     width: 50px;
-    /* ロゴの大きさに合わせて調整 */
     height: 50px;
     transition: transform 0.2s;
 }
 
 .notification-wrapper:hover {
     transform: scale(1.05);
-    /* ホバー時に少し大きくしてクリック感を出す */
 }
 
-/* ユーザーアイコン画像を表示する円形エリア */
 .user-avatar {
     width: 100%;
     height: 100%;
     background-color: #d1d5db;
-    /* 画像がない時のグレー */
     border-radius: 50%;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    /* 控えめな縁取り */
     overflow: hidden;
     background-size: cover;
     background-position: center;
 }
 
-/* 通知バッジ（赤い丸） */
 .notification-badge {
     position: absolute;
     top: -2px;
@@ -115,11 +109,9 @@ body {
     justify-content: center;
     padding: 0 4px;
     box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-    /* 赤く発光させてSF感を強調 */
     z-index: 10;
 }
 
-/* 検索フォーム全体のコンテナ */
 .search-console-wrapper {
     position: relative;
     display: flex;
@@ -135,7 +127,6 @@ body {
     /* 下線との隙間 */
 }
 
-/* 検索アイコン */
 .search-icon {
     width: 20px;
     height: 20px;
@@ -145,32 +136,24 @@ body {
     transition: transform 0.3s ease;
 }
 
-/* 入力欄本体 */
 .search-input {
     background: transparent;
     border: none;
     color: #ffffff;
     font-size: 18px;
-    /* 前回の調整で少し大きくしました */
     outline: none;
     width: 140px;
-    /* 通常時の幅（ここはお好みで） */
     transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    /* 動きを滑らかに */
 }
 
-/* クリックして入力状態になった時の幅 */
 .search-input:focus {
     width: 300px;
-    /* ここを 300px ~ 400px くらいに広げる */
 }
 
-/* プレースホルダーの色 */
 .search-input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* 検索窓の下線 */
 .search-underline {
     position: absolute;
     bottom: 0;
@@ -183,7 +166,6 @@ body {
     transition: all 0.3s ease;
 }
 
-/* 入力中に下線をオレンジに発光させる */
 .search-input:focus~.search-underline {
     background: #ff8c00;
     box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
