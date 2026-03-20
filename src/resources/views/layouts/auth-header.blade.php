@@ -30,7 +30,9 @@
 
                     {{-- ロゴ --}}
                     <div class="main-logo-visual">
-                        <img class="main-logo w-[140px] sm:w-[200px] md:w-[250px] transition-all" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
+                        <a href="/log/index">
+                            <img class="main-logo w-[140px] sm:w-[200px] md:w-[250px] transition-all" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
+                        </a>
                     </div>
 
                     {{-- スマホ時のみ表示（通知・ハンバーガー） --}}
@@ -77,7 +79,7 @@
                         {{-- ナビのボタン類 --}}
                         <div class="flex items-center gap-4">
 
-                            <x-submit-button class="!w-52 !h-[55px] !text-lg !rounded-full !tracking-tighter" onclick="location.href='#'">
+                            <x-submit-button class="!w-52 !h-[55px] !text-lg !rounded-full !tracking-tighter" onclick="location.href='{{ route('comingsoon.index') }}'">
                                 もうすぐ公開
                             </x-submit-button>
 
@@ -100,7 +102,7 @@
             {{-- スマホ用オーバーレイメニュー（ハンバーガーメニューを開いたとき表示される） --}}
             <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 lg:hidden">
 
-                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='#'">
+                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('comingsoon.index') }}'">
                     もうすぐ公開
                 </x-submit-button>
 
@@ -122,10 +124,26 @@
             @yield('content')
         </main>
 
-        <footer class="footer w-full bg-black/60 text-center text-white/90">
+        <footer class="footer w-full bg-black/60 text-center text-white/90 px-4 py-6">
+            {{-- 1. コピーライト（既存のものを少し調整） --}}
             <p class="font-['Baloo_Chettan_2'] text-[13px] font-normal tracking-[0.3rem]">
                 © 2026 CHRONO SPAGHETTI. All rights reserved.
             </p>
+
+            <div class="h-5"></div>
+
+            {{-- 2. TMDB帰属エリア（ここを追加） --}}
+            <div class="tmdb-attribution flex flex-col items-center gap-3">
+
+                {{-- TMDBロゴ：高さを指定して小さく表示し、白黒（invert）にして馴染ませる --}}
+                <img src="{{ asset('images/blue_long_tmdb-logo.svg') }}" alt="The Movie Database"
+                    class="h-4 w-auto opacity-50 transition-opacity hover:opacity-100">
+
+                {{-- 免責事項：文字を小さく、薄くして目立たせない --}}
+                <p class="text-[10px] text-white/50 max-w-[400px] leading-relaxed antialiased">
+                    This website uses TMDB and the TMDB APIs but is not endorsed, certified, or otherwise approved by TMDB.
+                </p>
+            </div>
         </footer>
 
         <script>

@@ -36,7 +36,9 @@
             @yield('content')
         </main>
     </body>
-    <footer class="footer">
-        <p class="footer-text">© 2026 CHRONO SPAGHETTI. All rights reserved.</p>
+    <footer class="footer w-full bg-black/60 text-center text-white/90">
+        <p class="font-['Baloo_Chettan_2'] text-[13px] font-normal tracking-[0.3rem]">
+            © 2026 CHRONO SPAGHETTI. All rights reserved.
+        </p>
     </footer>
 </html>

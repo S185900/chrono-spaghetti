@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ComingSoonController;
 
 // 認証系
 // 1. localhost/ にアクセスした時の処理
@@ -17,5 +18,9 @@ Route::get('/log/index', function () {
 })->middleware(['auth', 'verified'])->name('log.index');
 
 Route::view('/email-verification', 'auth.email-verification')->name('verification.notice');
+
+// カミングスーン画面
+Route::get('/comingsoon/coming-index', [ComingSoonController::class, 'index'])
+    ->name('comingsoon.index');
 
 
