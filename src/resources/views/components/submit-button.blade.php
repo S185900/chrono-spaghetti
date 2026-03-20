@@ -1,6 +1,5 @@
 <div class="chrono-btn-container">
     <button type="submit" {{ $attributes->merge(['class' => 'chrono-submit-btn']) }}>
-        {{-- class="font-inherit" を追加して、親のサイズを強制的に引き継がせます --}}
         <span class="btn-text" style="font-size: inherit;">{{ $slot }}</span>
         <div class="shimmer"></div>
     </button>

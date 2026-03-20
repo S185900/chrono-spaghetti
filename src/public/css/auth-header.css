@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss"; */
 
 /* --- 宇宙の背景画像の設定 --- */
 body {
@@ -15,13 +15,6 @@ body {
     background-attachment: fixed;
     background-color: #000000;
     background-repeat: no-repeat;
-}
-
-.main-logo {
-    min-width: 200px;
-    max-width: 100%;
-    height: auto;
-    /* アスペクト比を維持 */
 }
 
 .main-content {
@@ -41,154 +34,12 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 16px;
-    /* スマホでは 16px (px-4相当) にする */
 }
 
-.main-logo-visual {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 100%;
-    /* 親を超えないように強制 */
-}
 
-.header-actions {
-    display: flex;
-    align-items: center;
-}
-
-.header-actions form {
-    display: flex;
-    align-items: center;
-    margin: 0;
-}
-
-.header-nav-center {
-
-}
-
-.notification-wrapper {
-    position: relative;
-    display: inline-block;
-    transition: transform 0.2s;
-}
-
-.notification-wrapper:hover {
-    transform: scale(1.05);
-}
-
-.user-avatar {
-    width: 100%;
-    height: 100%;
-    background-color: #d1d5db;
-    border-radius: 50%;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    overflow: hidden;
-    background-size: cover;
-    background-position: center;
-}
-
-.notification-badge {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background-color: #ff0000;
-    /* 鮮やかな赤 */
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: bold;
-    min-width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4px;
-    box-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
-    z-index: 10;
-}
-
-.search-console-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.search-form {
-    align-items: center;
-    position: relative;
-    padding-bottom: 5px;
-    /* 下線との隙間 */
-}
-
-.search-icon {
-    width: 20px;
-    height: 20px;
-    color: #ffffff;
-    margin-right: 8px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.search-input {
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 18px;
-    outline: none;
-    width: auto;
-    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.search-input:focus {
-    width: 300px;
-}
-
-.search-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.search-underline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: #ffffff;
-    /* 添付画像通りの白 */
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.search-input:focus~.search-underline {
-    background: #ff8c00;
-    box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
-    height: 2px;
-}
 
 .footer {
-    font-family: "Baloo Chettan 2", cursive;
-    font-weight: 400;
-    font-size: 13px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    text-align: center;
-    letter-spacing: 0.3rem;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    margin-top: 20px !important;
+    padding: 10px 0 !important;
 }
 
-@media (min-width: 1024px) {
-    .header-container {
-        padding: 0 40px;
-        /* PCサイズになったら 40px に戻す */
-    }
-}
-
-@media (min-width: 1024px) {
-    .main-content {
-        padding: 0 40px;
-    }
-}

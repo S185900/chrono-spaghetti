@@ -8,8 +8,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // 'baloo' というクラス名で呼び出せるように設定
         'baloo': ['"Baloo Chettan 2"', 'Inter', 'sans-serif'],
+      },
+      colors: {
+        'brand': {
+          'primary': '#ff8c00',
+          'secondary': '#150029',
+        },
       },
     },
   },
