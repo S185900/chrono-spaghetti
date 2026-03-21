@@ -53,9 +53,8 @@ class ComingSoonController extends Controller
         // --- 4. DBから最新データを取得 ---
         // 指名検索した作品は日付が未定（null）や遠い未来の可能性があるので、条件を少し広げて取得
         // 公開日が今日以降、もしくは「公開日が未設定」のものもすべて取得する
-        $displayMovies = TmdbContent::orderByRaw('release_date IS NULL ASC') // 日付未設定を後ろに
-            ->orderBy('release_date', 'asc') // 日付があるものは近い順
-            ->take(20) 
+        $displayMovies = TmdbContent::orderByRaw('release_date IS NULL ASC') 
+            ->orderBy('release_date', 'asc') 
             ->get();
 
         return view('comingsoon.coming-index', compact('displayMovies'));
@@ -63,9 +62,21 @@ class ComingSoonController extends Controller
 
     private function saveResults($results, $type, $token)
     {
+
+        // 1. 絶対に表示したくないタイトルのブラックリスト
+        $blacklist = ['Touch Me'];
+
         $limitedResults = array_slice($results, 0, 8);
 
         foreach ($limitedResults as $item) {
+
+            $title = $item['title'] ?? ($item['name'] ?? 'タイトル不明');
+
+            // 2. ブラックリストに含まれる、またはアダルトフラグが立っていたらスキップ
+            if (in_array($title, $blacklist) || ($item['adult'] ?? false)) {
+                continue; 
+            }
+
             $detailResponse = Http::withToken($token)
                 ->get("https://api.themoviedb.org/3/{$type}/{$item['id']}", [
                     'append_to_response' => 'credits',

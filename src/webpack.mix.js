@@ -13,6 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        require('@tailwindcss/postcss'), // ここを修正
+        require('@tailwindcss/postcss')('./tailwind.config.js'), // ここを修正
         require('autoprefixer'),
     ]);
+
+// 監視対象から除外
+mix.options({
+    watchOptions: {
+        ignored: /node_modules|public/
+    }
+});

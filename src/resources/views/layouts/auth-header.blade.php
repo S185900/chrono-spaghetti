@@ -83,7 +83,7 @@
                                 もうすぐ公開
                             </x-submit-button>
 
-                            <x-submit-button class="!w-40 !h-[55px] !text-lg !rounded-full" onclick="location.href='#'">
+                            <x-submit-button class="!w-40 !h-[55px] !text-lg !rounded-full" onclick="location.href='{{ route('categories.index') }}'">
                                 カテゴリー
                             </x-submit-button>
 
@@ -106,7 +106,7 @@
                     もうすぐ公開
                 </x-submit-button>
 
-                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='#'">
+                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('categories.index') }}'">
                     カテゴリー
                 </x-submit-button>
 

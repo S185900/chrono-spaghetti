@@ -19,8 +19,7 @@
 
         <div class="tab-group flex items-end">
             <x-nav-tab label="Coming Soon" :active="true" link="#" />
-            {{-- 重なり幅（-ml-4）も、タブが大きくなるなら -ml-6
-            くらいに広げると比率が維持されます --}}
+
             <x-nav-tab
                 label="Released"
                 :active="false"

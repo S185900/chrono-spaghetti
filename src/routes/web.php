@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ComingSoonController;
+use App\Http\Controllers\CategoryController;
 
 // 認証系
 // 1. localhost/ にアクセスした時の処理
@@ -23,4 +24,7 @@ Route::view('/email-verification', 'auth.email-verification')->name('verificatio
 Route::get('/comingsoon/coming-index', [ComingSoonController::class, 'index'])
     ->name('comingsoon.index');
 
+
+// カテゴリー画面
+Route::get('/category/categories', [CategoryController::class, 'index'])->name('categories.index');
 

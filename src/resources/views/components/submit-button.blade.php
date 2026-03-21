@@ -38,7 +38,7 @@
         text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         transform: translateY(-2px);
     }
-    
+
     /* 1. 光の筋の土台 */
     .shimmer {
         position: absolute;
