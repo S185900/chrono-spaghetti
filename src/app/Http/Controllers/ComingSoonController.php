@@ -16,28 +16,19 @@ class ComingSoonController extends Controller
 
         // --- 1. 映画（Movie）のSFを公開日順に取得 ---
         $movieResponse = Http::withToken($token)->get('https://api.themoviedb.org/3/discover/movie', [
-            'with_genres' => 878,
+            'with_genres' => 878, // SFジャンル
             'language' => 'ja-JP',
             'region' => 'JP',
             'sort_by' => 'primary_release_date.asc',
             'primary_release_date.gte' => $today,
         ]);
+        
         if ($movieResponse->successful()) {
             $this->saveResults($movieResponse->json()['results'], 'movie', $token);
         }
 
-        // --- 2. ドラマ（TV）のSFを公開日順に取得 ---
-        $tvResponse = Http::withToken($token)->get('https://api.themoviedb.org/3/discover/tv', [
-            'with_genres' => 10765,
-            'language' => 'ja-JP',
-            'sort_by' => 'first_air_date.asc',
-            'first_air_date.gte' => $today,
-        ]);
-        if ($tvResponse->successful()) {
-            $this->saveResults($tvResponse->json()['results'], 'tv', $token);
-        }
-
-        // --- 3. 【追加】特定の期待作を「指名検索」して強制追加 ---
+        // --- 2. 特定の期待作を「指名検索」して追加 ---
+        // ドラマは除外するため、search/movie を使用
         $watchlist = ['Project Hail Mary', 'Disclosure Day']; 
         foreach ($watchlist as $query) {
             $searchResponse = Http::withToken($token)->get('https://api.themoviedb.org/3/search/movie', [
@@ -45,40 +36,41 @@ class ComingSoonController extends Controller
                 'language' => 'ja-JP',
             ]);
             if ($searchResponse->successful() && !empty($searchResponse->json()['results'])) {
-                // 検索結果の1番目を保存
                 $this->saveResults([$searchResponse->json()['results'][0]], 'movie', $token);
             }
         }
 
-        // --- 4. DBから最新データを取得 ---
-        // 指名検索した作品は日付が未定（null）や遠い未来の可能性があるので、条件を少し広げて取得
-        // 公開日が今日以降、もしくは「公開日が未設定」のものもすべて取得する
-        $displayMovies = TmdbContent::orderByRaw('release_date IS NULL ASC') 
+        // --- 3. DBからデータを取得 ---
+        // 過去に保存された「tv」データが表示されないよう、media_typeを'movie'に限定して取得
+        $displayMovies = TmdbContent::where('media_type', 'movie')
+            ->orderByRaw('release_date IS NULL ASC') 
             ->orderBy('release_date', 'asc') 
             ->get();
 
         return view('comingsoon.coming-index', compact('displayMovies'));
     }
 
+    public function show($id)
+    {
+        // 今はエラーを消すために、空のレスポンスか詳細ビューを返すように
+        // 本来はここで作品の詳細データを取得
+        return response()->json(['message' => 'Show method called for ID: ' . $id]);
+    }
+
     private function saveResults($results, $type, $token)
     {
-
-        // 1. 絶対に表示したくないタイトルのブラックリスト
         $blacklist = ['Touch Me'];
-
-        $limitedResults = array_slice($results, 0, 8);
+        $limitedResults = array_slice($results, 0, 20); // 少し取得数を増やしても良いかもしれません
 
         foreach ($limitedResults as $item) {
+            $title = $item['title'] ?? 'タイトル不明';
 
-            $title = $item['title'] ?? ($item['name'] ?? 'タイトル不明');
-
-            // 2. ブラックリストに含まれる、またはアダルトフラグが立っていたらスキップ
             if (in_array($title, $blacklist) || ($item['adult'] ?? false)) {
                 continue; 
             }
 
             $detailResponse = Http::withToken($token)
-                ->get("https://api.themoviedb.org/3/{$type}/{$item['id']}", [
+                ->get("https://api.themoviedb.org/3/movie/{$item['id']}", [
                     'append_to_response' => 'credits',
                     'language' => 'ja-JP',
                 ]);
@@ -86,13 +78,9 @@ class ComingSoonController extends Controller
             if ($detailResponse->successful()) {
                 $detail = $detailResponse->json();
 
-                $director = '不明';
-                if ($type === 'movie') {
-                    $director = collect($detail['credits']['crew'] ?? [])
-                        ->firstWhere('job', 'Director')['name'] ?? '不明';
-                } else {
-                    $director = $detail['created_by'][0]['name'] ?? '不明';
-                }
+                // 映画専用の監督取得ロジック
+                $director = collect($detail['credits']['crew'] ?? [])
+                    ->firstWhere('job', 'Director')['name'] ?? '不明';
 
                 $cast = collect($detail['credits']['cast'] ?? [])
                     ->take(5)
@@ -102,10 +90,10 @@ class ComingSoonController extends Controller
                 TmdbContent::updateOrCreate(
                     ['tmdb_id' => $item['id']],
                     [
-                        'media_type'   => $type,
-                        'title'        => $item['title'] ?? ($item['name'] ?? 'タイトル不明'),
+                        'media_type'   => 'movie',
+                        'title'        => $title,
                         'poster_path'  => $item['poster_path'],
-                        'release_date' => $item['release_date'] ?? ($item['first_air_date'] ?? null),
+                        'release_date' => $item['release_date'] ?? null,
                         'overview'     => $item['overview'],
                         'director'     => $director,
                         'cast'         => $cast, 

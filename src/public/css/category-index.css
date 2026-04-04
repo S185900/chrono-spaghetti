@@ -1,0 +1,125 @@
+/* 横スクロールを綺麗に見せるためのスタイル */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* フォントをSFっぽく（もし入っていれば） */
+body {
+    letter-spacing: 0.02em;
+    text-rendering: optimizeLegibility;
+}
+
+/* 各カテゴリーのブロックごとの間隔 */
+.category-item-wrapper {
+    width: 100% ;
+    margin-bottom: 50px;
+    padding-bottom: 10px;
+}
+
+/* タブレット・PCサイズでの調整 */
+@media (min-width: 768px) {
+    .category-item-wrapper {
+        /* 160px は広すぎたので、80px 〜 100px に縮小 */
+        margin-bottom: 80px;
+        /* 余白が少なすぎると感じたらここを 100px に */
+    }
+}
+
+/* 縦棒と説明文のセット */
+.sf-description-wrap {
+    border-left: 2px solid rgba(255, 140, 0, 0.4) !important;
+    /* オレンジの縦棒 */
+    padding-left: 20px;
+    /* ← ここで棒との距離を強制固定 */
+    margin-top: 10px;
+    margin-bottom: 20px;
+    max-width: 800px;
+}
+
+/* 説明文自体の行間と文字間 */
+.sf-description-text {
+    line-height: 2 !important;
+    /* 行間を広げて読みやすく */
+    letter-spacing: 0.08em !important;
+    /* 文字の間隔を広げてSF感を出す */
+    color: #e5e7eb !important;
+    /* 少し明るいグレー */
+    margin: 0 !important;
+}
+
+/* 代表作を囲む背景シェイプ */
+.archive-samples-box {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    /* bg-white/5 */
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 0.5rem !important;
+    /* rounded-lg */
+
+    /* スマホでの余白 */
+    padding: 32px !important;
+
+    width: 100%;
+}
+
+/* タブレット・PCサイズでの余白拡大 */
+@media (min-width: 768px) {
+    .archive-samples-box {
+        /* ここでシェイプをガッツリ大きく見せるために余白を増やす */
+        padding: 20px 40px !important;
+    }
+}
+
+/* 「代表作」の見出しとリストの間の距離 */
+.archive-samples-label {
+    display: block;
+    margin-bottom: 15px;
+    color: rgba(255, 140, 0, 0.8) !important;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+}
+
+/* バッジのレイアウト調整 */
+.archive-samples-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px !important;
+    /* バッジ同士の間隔 */
+}
+
+/* 作品名バッジのベーススタイル */
+.sf-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    /* bg-white/10 */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e5e7eb !important;
+    /* text-gray-200 */
+    border-radius: 9999px !important;
+    /* rounded-full */
+
+    /* 余白の調整（ここでバッジを大きくします） */
+    padding: 10px 24px !important;
+    /* 上下 10px / 左右 24px */
+
+    /* テキストの調整 */
+    font-size: 13px !important;
+    line-height: 1 !important;
+    letter-spacing: 0.05em !important;
+
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    /* 改行防止 */
+}
+
+/* ホバー時の演出（お好みで！） */
+.sf-badge:hover {
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    border-color: rgba(255, 140, 0, 0.4) !important;
+    /* ほんのりオレンジの縁取り */
+    transform: translateY(-1px);
+}

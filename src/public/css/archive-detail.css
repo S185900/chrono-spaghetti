@@ -1,0 +1,60 @@
+/* archive-detail.css */
+
+/* --- 全体の共通設定 --- */
+.log-index-wrapper textarea {
+    resize: none !important;
+    overflow: hidden !important;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100% !important;
+    height: auto;
+    min-height: 0 !important;
+    line-height: 1.4;
+    display: block !important;
+    white-space: pre-wrap !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+/* --- タイトルと監督名（大きくしたい部分） --- */
+/* Blade側でクラスを分けるのが確実なので、後ほどHTML側にも反映させます */
+.title-area {
+    font-size: 18px !important;
+    /* スマホ */
+}
+
+@media (min-width: 768px) {
+    .title-area {
+        font-size: 24px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .title-area {
+        font-size: 30px !important;
+    }
+}
+
+/* --- ★ ログ本文（PCでも大きくしたくない部分） --- */
+.log-content {
+    background: rgba(255, 255, 255, 0.05) !important;
+    /* うっすら背景 */
+    padding: 1rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px !important;
+
+    /* PCでもこのサイズに固定（または微増に抑える） */
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    /* 文章なので行間を広めに */
+    color: #d1d5db !important;
+    /* gray-300相当 */
+}
+
+@media (min-width: 1024px) {
+    .log-content {
+        font-size: 15px !important;
+        /* PCでも15px程度で止める */
+    }
+}

@@ -13,13 +13,26 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css', [
-        require('@tailwindcss/postcss')('./tailwind.config.js'), // ここを修正
+        // require('@tailwindcss/postcss')('./tailwind.config.js'),
+        // require('tailwindcss')('./tailwind.config.js'),
+        // require('autoprefixer'),
+        // @tailwindcss/postcss を使用
+        require('@tailwindcss/postcss'),
         require('autoprefixer'),
     ]);
 
-// 監視対象から除外
+// 無限ループ対策：publicフォルダを監視から完全に外す
 mix.options({
     watchOptions: {
         ignored: /node_modules|public/
+    }
+});
+
+mix.webpackConfig({
+    watchOptions: {
+        ignored: [
+            '**/node_modules/**',
+            '**/public/**', // publicフォルダ内の変更を一切無視
+        ]
     }
 });

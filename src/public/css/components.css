@@ -48,3 +48,390 @@
     padding-bottom: 2px;
 }
 
+
+
+/* --- nav-tabスタイル --- */
+.tab-custom-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* --- スマホ向け（デフォルト） --- */
+    padding: 8px 30px;
+    /* 横幅を抑える */
+    font-size: 0.9rem;
+    /* 文字を少し小さく */
+    margin-right: 8px;
+    /* タブ同士の間隔を詰める */
+
+    color: #9ca3af;
+    font-family: 'Baloo Chettan 2', cursive;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    transform: skewX(-30deg);
+}
+
+/* --- PC向け (768px以上) --- */
+@media (min-width: 768px) {
+    .tab-custom-btn {
+        padding: 12px 65px;
+        /* 元のゆったりサイズ */
+        font-size: 1.25rem;
+        /* 大きめのフォント */
+        margin-right: 15px;
+        letter-spacing: 0.2em;
+    }
+}
+
+/* 背景面 (共通) */
+.tab-custom-btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.05);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* ライン (共通) */
+.tab-custom-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1.5px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* Active状態の設定は省略せずそのまま残してください */
+.tab-custom-btn.active::after {
+    border-top: 2px solid #f97316;
+    border-left: 2px solid #f97316;
+    filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.6));
+}
+
+/* 文字の補正 */
+.tab-custom-btn span {
+    position: relative;
+    z-index: 3;
+    transform: skewX(30deg);
+    display: inline-block;
+    margin-left: 4px;
+    /* スマホ用 */
+}
+
+@media (min-width: 768px) {
+    .tab-custom-btn span {
+        margin-left: 8px;
+        /* PC用 */
+    }
+}
+
+/* --- orange-link.blade.phpのスタイル --- */
+.chrono-orange-link {
+    color: #ff8c00;
+    text-decoration: none;
+    /* font-size は Blade側から受け取るため、ここでは inherit に設定 */
+    font-size: inherit;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    text-shadow: 0 0 5px rgba(255, 140, 0, 0.3);
+    display: inline-block;
+    /* border-bottom の位置を安定させるため */
+}
+
+.chrono-orange-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+        0 0 15px rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    padding-bottom: 2px;
+}
+
+/* --- search-bar.blade.phpのスタイル --- */
+.search-form {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    /* width: auto のまま、inputの幅に追従させます */
+    padding-bottom: 5px;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    outline: none;
+    /* ★初期の幅をここで指定（160px） */
+    width: 160px;
+    max-width: calc(100vw - 80px);
+    transition: width 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ★クリック（フォーカス）した時に幅を広げる */
+.search-input:focus {
+    width: 280px;
+    max-width: calc(100vw - 80px);
+}
+
+.search-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #ffffff;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.search-input:focus~.search-underline {
+    background: #ff8c00;
+    box-shadow: 0 0 12px rgba(255, 140, 0, 0.8);
+    height: 2px;
+}
+
+
+/* --- social-button.blade.phpのスタイル --- */
+.chrono-social-btn {
+    color: #ffffff;
+    background-color: #150029;
+    /* 深い紫 */
+    width: 300px;
+    padding: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    outline: none;
+    font-family: 'Baloo Chettan 2', cursive;
+}
+
+/* ホバー時の紫色の発光エフェクト */
+.chrono-social-btn:hover {
+    background-color: #2a0052;
+    border: 1px solid rgba(180, 100, 255, 0.5);
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4),
+        0 0 30px rgba(138, 43, 226, 0.2);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* シマーエフェクト（キラリと光る） */
+.chrono-social-btn .shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transition: none;
+}
+
+.chrono-social-btn:hover .shimmer {
+    animation: social-shimmer 0.8s forwards;
+}
+
+@keyframes social-shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+.btn-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- submit-button.blade.phpのスタイル --- */
+.chrono-btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.chrono-submit-btn {
+    width: 80%;
+    padding: 10px 0;
+    background-color: transparent;
+    border: 2px solid #ff8c00;
+    border-radius: 30px;
+    color: #ff8c00;
+    font-family: 'Baloo Chettan 2', cursive;
+    /* font-size はここでは指定せず、外から受け取れるようにします */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5), 0 0 20px rgba(255, 140, 0, 0.2);
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+    outline: none;
+}
+
+.chrono-submit-btn:hover {
+    background-color: rgba(255, 140, 0, 0.2);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 140, 0, 0.7), 0 0 40px rgba(255, 140, 0, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* 1. 光の筋の土台 */
+.shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    transition: none;
+    /* ホバーしてない時は動かさない */
+}
+
+/* 2. ホバーした瞬間に光を走らせる */
+.chrono-submit-btn:hover .shimmer {
+    animation: shimmer-run 0.7s forwards;
+}
+
+/* 3. アニメーションの動き（左から右へ） */
+@keyframes shimmer-run {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+/* テキストが光に埋もれないように最前面へ */
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- user-avatar.blade.phpのスタイル --- */
+/* 共通のスタイル */
+.notification-badge {
+    /* サイズは親要素に合わせて可変にするため、呼び出し側のクラスで制御しやすくします */
+    transition: all 0.3s ease;
+}
+
+.user-avatar {
+    transition: border-color 0.3s ease;
+}
+
+.user-avatar:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+
+
+
+
+
+/* --- エラーメッセージform-error-message.blade.phpのネオンスタイル --- */
+.chrono-error-message {
+    color: #ff8c00;
+    font-size: inherit;
+    /* Blade側のTailwindクラスを優先 */
+    font-weight: 700;
+    display: block;
+    text-align: left;
+    padding-top: 8px;
+    line-height: 1.4;
+    width: 100%;
+    text-shadow:
+        0 0 5px rgba(255, 140, 0, 0.9),
+        0 0 12px rgba(255, 140, 0, 0.6),
+        0 0 25px rgba(255, 80, 0, 0.3);
+    filter: brightness(1.2);
+    animation: neon-pulse 2.5s infinite ease-in-out;
+}
+
+@keyframes neon-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        filter: brightness(1.2);
+        text-shadow: 0 0 5px rgba(255, 140, 0, 0.9), 0 0 12px rgba(255, 140, 0, 0.6);
+    }
+
+    50% {
+        opacity: 0.85;
+        filter: brightness(1.6);
+        text-shadow: 0 0 10px rgba(255, 140, 0, 1), 0 0 20px rgba(255, 140, 0, 0.8);
+    }
+}
+
+/* --- カテゴリータグcategory-tag.blade.phpのスタイル --- */
+/* components.css */
+
+.category-tag {
+    display: inline-block;
+    background-color: var(--color-brand-primary);
+    color: var(--color-brand-secondary);
+    font-weight: 900;
+
+    /* ★ px固定ではなく em にすると、文字サイズに合わせて余白も自動調整されます */
+    padding: 0.4em 1em !important;
+
+    border-radius: 30px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    line-height: 1.5;
+    transition: all 0.2s ease;
+    user-select: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    /* --- レスポンシブのサイズ指定 --- */
+
+    /* 1. スマホ (デフォルト) */
+    font-size: 15px;
+
+    /* 2. タブレット (768px以上) */
+    @media (min-width: 768px) {
+        font-size: 17px;
+    }
+
+    /* 3. PC (1024px以上) */
+    @media (min-width: 1024px) {
+        font-size: 17px;
+    }
+}
+
+.category-tag:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 15px var(--color-brand-primary);
+    transform: translateY(-1px);
+}

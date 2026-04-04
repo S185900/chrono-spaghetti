@@ -1,0 +1,81 @@
+/* archive-index.css */
+
+/* 1. 親要素：文字を包む箱自体の設定 */
+.log-card-info {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* 下側に寄せる */
+
+    /* 箱自体のパディング（角丸から逃がす） */
+    padding: 30px !important;
+
+    /* 背景：下から上へ暗くなるグラデーション */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+    box-sizing: border-box !important;
+}
+
+.log-card-info>* {
+    /* !important をつけても効かないのは、相手が「*」で
+       すべての要素に直接 0 を叩き込んでいるからです。
+       こちらも「左側の余白」を個別に指定して上書きします。
+    */
+    padding-left: 20px !important;
+    margin-left: 0 !important;
+    display: block !important;
+    text-align: left !important;
+}
+
+/* もし h3 や p が width: 100% で親を突き破っているなら、これも追加 */
+.log-card-info h3,
+.log-card-info p,
+.log-card-info span {
+    width: calc(100% - 20px) !important;
+    box-sizing: border-box !important;
+}
+
+/* 2. ホバー時の表示 */
+.log-card:hover .log-card-info {
+    opacity: 1;
+}
+
+/* 3. 【最重要】中の要素（p, h3, span）に直接余白を叩き込む */
+/* リセットCSSの「padding-left: 0」に打ち勝つ指定 */
+.log-card-info h3,
+.log-card-info p,
+.log-card-info span {
+    padding-left: 10px !important;
+    /* ← ここで左余白を強制 */
+    margin-left: 0 !important;
+    display: block;
+    width: auto;
+    /* 100%を解除してパディングを有効に */
+    text-align: left;
+}
+
+/* 4. 各パーツごとのデザイン微調整 */
+.log-card-category {
+    color: #ff8c00;
+    /* ブランドオレンジ */
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.log-card-title {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 900;
+    line-height: 1.4;
+    margin-top: 4px;
+    word-break: break-all;
+    /* 長いタイトル対策 */
+}

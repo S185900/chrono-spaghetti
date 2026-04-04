@@ -30,7 +30,7 @@
 
                     {{-- ロゴ --}}
                     <div class="main-logo-visual">
-                        <a href="/log/index">
+                        <a href="{{ route('archive.index') }}">
                             <img class="main-logo w-[140px] sm:w-[200px] md:w-[250px] transition-all" src="{{ asset('images/CHRONO_SPAGHETTI-logo.png') }}" alt="CHRONO SPAGHETTI">
                         </a>
                     </div>
@@ -38,7 +38,7 @@
                     {{-- スマホ時のみ表示（通知・ハンバーガー） --}}
                     <div class="flex items-center gap-3 lg:hidden">
 
-                        <a href="/" class="relative">
+                        <a href="{{ route('mypage.show') }}" class="relative">
                             <x-user-avatar :count="2" class="w-8 h-8 sm:w-10 sm:h-10" />
                         </a>
 
@@ -72,18 +72,22 @@
                             <x-search-bar class="transition-all duration-300 ease-in-out w-[160px] focus-within:w-[270px]" />
                         </div>
 
-                        <div class="inline-block transform lg:translate-y-[10px]">
-                            <x-user-avatar :count="2" class="w-[50px] h-[50px]" />
-                        </div>
+                        {{-- アバター部分：親のaタグは動かさず、中身で制御 --}}
+                        <!-- <a href="{{ route('mypage.show') }}" class="relative inline-block hover:opacity-80 transition-opacity">
+                            <x-user-avatar :count="2" class="w-[50px] h-[50px] -translate-y-[10px]" />
+                        </a> -->
+                        <a href="{{ route('mypage.show') }}" class="relative flex items-end hover:opacity-80 transition-opacity h-[5px] lg:-ml-4">
+                            <x-user-avatar :count="2" class="w-[60px] h-[60px]" />
+                        </a>
 
                         {{-- ナビのボタン類 --}}
                         <div class="flex items-center gap-4">
 
-                            <x-submit-button class="!w-52 !h-[55px] !text-lg !rounded-full !tracking-tighter" onclick="location.href='{{ route('comingsoon.index') }}'">
+                            <x-submit-button class="!w-52 !h-[55px] !text-lg !rounded-full !tracking-tighter" onclick="location.href='{{ route('coming.index') }}'">
                                 もうすぐ公開
                             </x-submit-button>
 
-                            <x-submit-button class="!w-40 !h-[55px] !text-lg !rounded-full" onclick="location.href='{{ route('categories.index') }}'">
+                            <x-submit-button class="!w-40 !h-[55px] !text-lg !rounded-full" onclick="location.href='{{ route('category.index') }}'">
                                 カテゴリー
                             </x-submit-button>
 
@@ -102,11 +106,11 @@
             {{-- スマホ用オーバーレイメニュー（ハンバーガーメニューを開いたとき表示される） --}}
             <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center gap-8 translate-x-full transition-transform duration-500 lg:hidden">
 
-                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('comingsoon.index') }}'">
+                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('coming.index') }}'">
                     もうすぐ公開
                 </x-submit-button>
 
-                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('categories.index') }}'">
+                <x-submit-button class="!w-64 !h-[70px] !text-2xl !rounded-full" onclick="location.href='{{ route('category.index') }}'">
                     カテゴリー
                 </x-submit-button>
 
@@ -146,29 +150,11 @@
             </div>
         </footer>
 
-        <script>
-            const menuBtn = document.getElementById('menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const line1 = document.getElementById('line1');
-            const line2 = document.getElementById('line2');
-            const line3 = document.getElementById('line3');
-            let isOpen = false;
+        {{-- 共通のハンバーガーメニューJS --}}
+        <script src="{{ asset('js/hamburger-menu.js') }}"></script>
 
-            menuBtn.addEventListener('click', () => {
-                isOpen = !isOpen;
-                if (isOpen) {
-                    mobileMenu.classList.remove('translate-x-full');
-                    line1.setAttribute('d', 'M3 3L21 21');
-                    line2.style.opacity = '0';
-                    line3.setAttribute('d', 'M3 21L21 3');
-                } else {
-                    mobileMenu.classList.add('translate-x-full');
-                    line1.setAttribute('d', 'M3 6h18');
-                    line2.style.opacity = '1';
-                    line3.setAttribute('d', 'M3 18h18');
-                }
-            });
-        </script>
+        {{-- ページごとの個別JSを流し込む --}}
+        @yield('scripts')
 
     </body>
 </html>

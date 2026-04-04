@@ -3,6 +3,7 @@
 @section('css')
     <link rel="stylesheet" href="{{ asset('css/first-header.css')}}">
     <link rel="stylesheet" href="{{ asset('css/register.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 

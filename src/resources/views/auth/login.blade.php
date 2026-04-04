@@ -4,6 +4,7 @@
 {{-- 先に古いファイルを読み込む --}}
     <link rel="stylesheet" href="{{ asset('css/first-header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 @endsection
 

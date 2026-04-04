@@ -14,16 +14,5 @@
     </a>
 </div>
 
-<style>
-    /* 共通のスタイル */
-    .notification-badge {
-        /* サイズは親要素に合わせて可変にするため、呼び出し側のクラスで制御しやすくします */
-        transition: all 0.3s ease;
-    }
-    .user-avatar {
-        transition: border-color 0.3s ease;
-    }
-    .user-avatar:hover {
-        border-color: rgba(255, 255, 255, 0.8);
-    }
-</style>
+
+

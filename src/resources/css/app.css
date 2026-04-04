@@ -3,4 +3,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* この下に、これまでの「白く光るリンク」などの自作CSSが続いてOKです */
+/* この下に、自作CSS */
+@theme {
+    --color-brand-primary: #ff8c00;
+    --color-brand-secondary: #150029;
+    --font-baloo: "Baloo Chettan 2", Inter, sans-serif;
+}
