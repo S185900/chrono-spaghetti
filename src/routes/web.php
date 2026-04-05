@@ -42,15 +42,20 @@ Route::middleware(['auth'])->group(function () {
 
         // --- 観測ログ (Archive) ---
         Route::prefix('archive')->group(function () {
+
             Route::get('/', [ArchiveController::class, 'index'])->name('archive.index');
             Route::get('/{id}', [ArchiveController::class, 'show'])->name('archive.show');
             Route::post('/{id}/record', [ArchiveController::class, 'storeRecord'])->name('archive.record.store');
-            Route::post('/archive/update/{id}', [UserMovieStatusController::class, 'update'])->name('user.movie.update');
+
+            Route::post('/archive/tags/{id}', [UserMovieStatusController::class, 'updateTags'])->name('user.movie.tags.update');
+
+            Route::post('/update/{id}', [UserMovieStatusController::class, 'update'])->name('user.movie.update');
+
         });
 
         // --- カミングスーン (Coming Soon) ---
         Route::prefix('comingsoon')->group(function () {
-    
+
             // 1. 最優先：具体的なアクション（POST送信など）を一番上に
             Route::post('/user-movie-status/bookmark', [UserMovieStatusController::class, 'bookmark'])
                 ->name('user.movie.bookmark');

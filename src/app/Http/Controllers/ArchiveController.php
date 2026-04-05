@@ -17,20 +17,12 @@ class ArchiveController extends Controller
         $currentTab = $request->query('tab', 'watched');
         $user = auth()->user();
 
-        if ($currentTab === 'bookmark') {
-            // user_movie_statuses テーブルから status が 'bookmark' のものを取得
-            // tmdb_contents テーブルと結合（join）して作品情報も一緒に持ってくる
-            $movies = \App\Models\UserMovieStatus::where('user_id', $user->id)
-                ->where('status', 'bookmark')
-                ->join('tmdb_contents', 'user_movie_statuses.tmdb_content_id', '=', 'tmdb_contents.tmdb_id')
-                ->select('tmdb_contents.*', 'user_movie_statuses.created_at as bookmarked_at')
-                ->get();
-        } else {
-            // Watched タブ用のデータ（今はまだ空のコレクションにしておく）
-            $movies = collect();
-        }
+        $movies = \App\Models\UserMovieStatus::where('user_id', $user->id)
+            ->where('status', $currentTab) 
+            ->join('tmdb_contents', 'user_movie_statuses.tmdb_content_id', '=', 'tmdb_contents.tmdb_id')
+            ->select('tmdb_contents.*', 'user_movie_statuses.created_at as log_date')
+            ->get();
 
-        // viewに $currentTab を渡す
         return view('archive.archive-index', compact('currentTab', 'movies'));
     }
 
@@ -47,18 +39,8 @@ class ArchiveController extends Controller
                     ->where('tmdb_content_id', $id)
                     ->first();
 
-        // 現時点では表示確認用にダミーデータを渡す
-        // $movie = (object)[
-        //     'id' => $id,
-        //     'title' => 'プロジェクト・ヘイル・メアリー',
-        //     'director' => 'フィル・ロード',
-        //     'cast' => ['ライアン・ゴズリング', 'ザンドラ・ヒュラー'],
-        //     'release_date' => \Carbon\Carbon::parse('2026-03-15'),
-        //     'poster_path' => '/v0vXUceGPREVeLM6YVDX38F3.jpg', // TMDBなどのパス
-        //     'overview' => '孤立無援の宇宙船で目覚めた男が、人類を救うために未知の相棒と協力するSF大作。',
-        //     'category' => 'SF MOVIE ARCHIVE'
-        // ];
+        $categories = \App\Models\Category::all();
 
-        return view('archive.archive-detail', compact('movie', 'status'));
+        return view('archive.archive-detail', compact('movie', 'status', 'categories'));
     }
 }

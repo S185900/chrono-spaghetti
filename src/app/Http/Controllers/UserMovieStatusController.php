@@ -13,6 +13,8 @@ class UserMovieStatusController extends Controller
         // バリデーション：tmdb_idが必須
         $request->validate([
             'tmdb_content_id' => 'required|exists:tmdb_contents,tmdb_id',
+            'note' => 'nullable|string',
+            'rating' => 'nullable|integer|min:1|max:5',
         ]);
 
         // 保存または更新（1人1映画1ステータス）
@@ -31,15 +33,36 @@ class UserMovieStatusController extends Controller
                          ->with('message', 'ブックマークに保存しました！');
     }
 
+    public function updateTags(Request $request, $id)
+    {
+        // TMDB IDから作品を取得
+        $movie = \App\Models\TmdbContent::where('tmdb_id', $id)->firstOrFail();
+        
+        // 中間テーブル (category_tmdb_content) を更新
+        // ※TmdbContentモデルにcategories()リレーションがある前提です
+        $movie->categories()->sync($request->category_ids);
+
+        return back()->with('success', 'カテゴリーを更新しました');
+    }
+
     public function update(Request $request, $id)
     {
+
+        // バリデーション
+        $request->validate([
+            'user_comment' => 'nullable|string',
+            'rating'       => 'nullable|integer|min:1|max:5',
+        ]);
+
         \App\Models\UserMovieStatus::where('user_id', auth()->id())
             ->where('tmdb_content_id', $id)
             ->update([
-                'note' => $request->note,
-                // 'status' => 'watched' に変える処理など
+                'user_comment' => $request->user_comment,
+                'rating' => $request->rating,
+                'status' => 'watched',
             ]);
 
-        return back()->with('success', 'ログを保存しました！');
+        return redirect()->route('archive.index', ['tab' => 'watched'])
+                 ->with('success', 'LOGを保存し、Watchedリストに移動しました。');
     }
 }

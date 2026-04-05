@@ -58,3 +58,18 @@
         /* PCでも15px程度で止める */
     }
 }
+
+#category-selector {
+    /* グリッド自体の幅を中身に合わせる */
+    width: fit-content;
+    /* 親要素の中で中央に寄せる */
+    margin-left: auto;
+    margin-right: auto;
+    /* 左に寄りすぎないよう、最低限のパディングを確保 */
+    padding: 0 20px;
+}
+
+/* 各アイテムの幅を一定にして、2列のラインを揃える（お好みで調整） */
+#category-selector label {
+    min-width: 140px;
+}

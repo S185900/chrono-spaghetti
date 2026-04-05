@@ -22,7 +22,8 @@ class UserMovieStatuses extends Migration
             
             $table->string('status'); 
             $table->text('user_comment')->nullable();
-            $table->integer('rating')->nullable();
+            // $table->integer('rating')->nullable();
+            $table->tinyInteger('rating')->nullable();
             $table->timestamps();
 
             // これで型が完全に一致するので通るはずです

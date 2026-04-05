@@ -17,7 +17,7 @@ class TmdbContent extends Model
         'release_date',
         'overview',
         'director',
-        'cast'
+        'cast',
         'countries',     // 制作国
         'release_year',  // 公開年
         'runtime',       // 上映時間
