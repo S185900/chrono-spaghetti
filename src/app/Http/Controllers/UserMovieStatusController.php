@@ -30,4 +30,16 @@ class UserMovieStatusController extends Controller
         return redirect()->route('archive.index', ['tab' => 'bookmark'])
                          ->with('message', 'ブックマークに保存しました！');
     }
+
+    public function update(Request $request, $id)
+    {
+        \App\Models\UserMovieStatus::where('user_id', auth()->id())
+            ->where('tmdb_content_id', $id)
+            ->update([
+                'note' => $request->note,
+                // 'status' => 'watched' に変える処理など
+            ]);
+
+        return back()->with('success', 'ログを保存しました！');
+    }
 }

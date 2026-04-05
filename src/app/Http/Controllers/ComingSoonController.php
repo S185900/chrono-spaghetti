@@ -82,6 +82,11 @@ class ComingSoonController extends Controller
                 $director = collect($detail['credits']['crew'] ?? [])
                     ->firstWhere('job', 'Director')['name'] ?? '不明';
 
+                // --- 【追加】国名を取得してカンマ区切りの文字列にする ---
+                $countries = collect($detail['production_countries'] ?? [])
+                    ->pluck('name')
+                    ->toArray(); // ['アメリカ合衆国', 'イギリス'] のような配列
+
                 $cast = collect($detail['credits']['cast'] ?? [])
                     ->take(5)
                     ->pluck('name')
@@ -96,6 +101,7 @@ class ComingSoonController extends Controller
                         'release_date' => $item['release_date'] ?? null,
                         'overview'     => $item['overview'],
                         'director'     => $director,
+                        'countries'    => $countries,
                         'cast'         => $cast, 
                     ]
                 );

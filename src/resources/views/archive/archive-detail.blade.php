@@ -21,7 +21,7 @@
     <div class="h-[40px] md:h-[50px] lg:h-[50px]"></div>
 
     <span class="text-[var(--color-brand-primary)] text-lg md:text-xl lg:text-2xl font-mono tracking-widest mb-1 opacity-80 block lg:text-center">
-        SERIAL NUMBER: #{{ str_pad($movie->id, 6, '0', STR_PAD_LEFT) }}
+        SERIAL NUMBER: #TMDB-{{ $movie->tmdb_id }}
     </span>
 
     <div class="h-[20px] md:h-[20px] lg:h-[20px]"></div>
@@ -74,22 +74,50 @@
             <div class="mt-16 pt-8 border-t border-white/10 space-y-6">
                 <div class="h-[20px] md:h-[20px] lg:h-[20px]"></div>
 
+                    {{-- 公開年 --}}
                     <div class="grid grid-cols-[100px_1fr] gap-4">
-                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">RELEASE</span>
-                        <span class="text-sm text-gray-300">2014年</span>
+
+                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">
+                            RELEASE
+                        </span>
+                        <span class="text-sm text-gray-300">
+                            {{ $movie->release_year ?? ($movie->release_date ? $movie->release_date->format('Y年') : '不明') }}
+                        </span>
+
                     </div>
 
+                    {{-- 国 --}}
                     <div class="grid grid-cols-[100px_1fr] gap-4">
-                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">COUNTRY</span>
-                        <span class="text-sm text-gray-300">アメリカ、イギリス</span>
+
+                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">
+                            COUNTRY
+                        </span>
+                        <span class="text-sm text-gray-300">
+                            {{ !empty($movie->countries) ? implode('、', $movie->countries) : '不明' }}
+                        </span>
+                        </span>
+
                     </div>
 
+                    {{-- キャスト --}}
                     <div class="grid grid-cols-[100px_1fr] gap-4">
-                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">CAST</span>
+
+                        <span class="text-[10px] text-white/40 uppercase tracking-widest pt-1">
+                            CAST
+                        </span>
+
                         <div class="text-[11px] text-gray-400 leading-relaxed space-y-1">
-                        <p>Matthew McConaughey <span class="text-white/20 mx-1">/</span> マシュー・マコノヒー</p>
-                        <p>Anne Hathaway <span class="text-white/20 mx-1">/</span> アン・ハサウェイ</p>
-                        <p>Jessica Chastain <span class="text-white/20 mx-1">/</span> ジェシカ・チャステイン</p>
+                            @php
+                                $casts = is_string($movie->cast) ? json_decode($movie->cast, true) : $movie->cast;
+                            @endphp
+                            @if(is_array($casts))
+                                @foreach(array_slice($casts, 0, 5) as $cast)
+                                    <p>{{ $cast }}</p>
+                                @endforeach
+                            @else
+                                <p>---</p>
+                            @endif
+                        </div>
                     </div>
 
                 </div>
@@ -100,34 +128,58 @@
         </div>
 
         {{-- 右カラム：ログ（鑑賞記録）セクション --}}
-        {{-- lg:pl-16 で線との余白を確保 --}}
         <div class="w-full lg:w-[55%] max-w-[650px] mt-12 lg:mt-0 space-y-16 pl-8 lg:pl-16 relative">
-            
-            {{-- ログ：最新 --}}
-            <div class="group relative">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center gap-3">
-                        <span class="text-[10px] text-white/40 uppercase tracking-widest">Log Date:</span>
-                        <span class="text-sm text-orange-400 font-mono">2024.11.09</span>
-                    </div>
-                    <div class="flex text-orange-400 text-sm">★★★★★</div>
-                </div>
-                <div class="h-[19px] md:h-[19px] lg:h-[19px]"></div>
-                <div class="relative">
-                    <textarea 
-                        class="log-content w-full bg-white/5 border border-white/10 rounded-lg p-4 text-sm text-gray-200 leading-relaxed focus:border-orange-500/50 focus:ring-0 transition-all resize-none overflow-hidden block" 
-                        rows="1"
-                        oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-                    >10周年の劇場リバイバル上映を見に行った。何度見てもガルガンチュアの映像美とハンス・ジマーの音楽に圧倒される。</textarea>
-                </div>
-            </div>
 
-            {{-- 追加ボタン --}}
-            <div class="flex justify-center pt-4">
-                <button class="px-6 py-2 border border-dashed border-white/20 rounded-full text-[10px] text-white/40 hover:border-orange-500 hover:text-orange-500 transition-all">
-                    + ADD NEW LOG
-                </button>
-            </div>
+            {{-- 保存用のフォーム --}}
+            <form action="{{ route('user.movie.update', $movie->tmdb_id) }}" method="POST">
+                @csrf
+
+                <div class="group relative">
+                    <div class="flex items-center justify-between mb-3">
+
+                        <div class="flex items-center gap-3">
+                            <span class="text-[10px] text-white/40 uppercase tracking-widest">
+                                Log Date:
+                            </span>
+                            <span class="text-sm text-orange-400 font-mono">
+                                {{ $status->created_at ? $status->created_at->format('Y.m.d') : now()->format('Y.m.d') }}
+                            </span>
+                        </div>
+
+                        <div class="flex text-orange-400 text-sm">
+                            ★★★★★
+                        </div>
+                    </div>
+
+                    <div class="h-[19px] md:h-[19px] lg:h-[19px]"></div>
+
+                    <div class="relative">
+                        <textarea
+                            name="note"
+                            class="log-content w-full bg-white/5 border border-white/10 rounded-lg p-4 text-sm text-gray-200 leading-relaxed focus:border-orange-500/50 focus:ring-0 transition-all resize-none overflow-hidden block"
+                            rows="5"
+                            oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                            placeholder="この映画の感想や、自分なりの考察を記録しましょう..."
+                        >{{ old('note', $status->note ?? '') }}</textarea>
+                    </div>
+
+                </div>
+
+                {{-- 追加ボタン --}}
+                <div class="flex justify-center pt-4">
+                    <button class="px-6 py-2 border border-dashed border-white/20 rounded-full text-[10px] text-white/40 hover:border-orange-500 hover:text-orange-500 transition-all">
+                        + ADD NEW LOG
+                    </button>
+                </div>
+
+                {{-- 保存ボタン --}}
+                <div class="flex justify-end mt-6">
+                    <button type="submit" class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold rounded-full transition-all shadow-[0_0_15px_rgba(255,140,0,0.3)]">
+                        SAVE THIS LOG
+                    </button>
+                </div>
+
+            </form>
         </div>
     </div>
 </div>

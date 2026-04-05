@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', [ArchiveController::class, 'index'])->name('archive.index');
             Route::get('/{id}', [ArchiveController::class, 'show'])->name('archive.show');
             Route::post('/{id}/record', [ArchiveController::class, 'storeRecord'])->name('archive.record.store');
+            Route::post('/archive/update/{id}', [UserMovieStatusController::class, 'update'])->name('user.movie.update');
         });
 
         // --- カミングスーン (Coming Soon) ---

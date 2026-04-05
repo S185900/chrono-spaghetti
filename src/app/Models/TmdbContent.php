@@ -18,11 +18,17 @@ class TmdbContent extends Model
         'overview',
         'director',
         'cast'
+        'countries',     // 制作国
+        'release_year',  // 公開年
+        'runtime',       // 上映時間
+        'is_coming_soon' // フラグ
     ];
 
     protected $casts = [
         'cast' => 'array',
+        'countries' => 'array',
         'release_date' => 'date',
+        'is_coming_soon' => 'boolean',
     ];
 
     // 作品に紐づくカテゴリー（タグ）

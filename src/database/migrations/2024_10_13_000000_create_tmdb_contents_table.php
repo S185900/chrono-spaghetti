@@ -22,9 +22,11 @@ class CreateTmdbContentsTable extends Migration
             $table->date('release_date')->nullable();
             $table->text('overview')->nullable();
 
-            // 追加分
             $table->string('director')->nullable();    // 監督名
             $table->json('cast')->nullable();          // 俳優5名を配列（JSON）で保存
+            $table->json('countries')->nullable();     // 制作国（複数あるためJSON）
+            $table->integer('release_year')->nullable(); // 公開年（検索・表示用）
+            $table->integer('runtime')->nullable();      // 上演時間（分）
 
             $table->boolean('is_coming_soon')->default(true);
             $table->timestamps();
